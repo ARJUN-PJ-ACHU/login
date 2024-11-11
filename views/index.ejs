@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Login Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Ensures the body and html cover the full screen */
+        html, body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container1 {
+            background-image: url('https://res.cloudinary.com/dlosst2x3/image/upload/v1730634402/bg_qiz0di.jpg'); /* Adjust the path if necessary */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; 
+            width: 100vw; 
+            animation: animateBg 5s linear infinite;
+        }
+
+        .bl {
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+        }
+
+        /* Animate background hue */
+        @keyframes animateBg {
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 360px) {
+            .bl {
+                width: 90%;
+                padding: 1rem;
+            }
+        }
+
+        /* Floating label effect */
+        .input-container {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-container input {
+            background: transparent;
+            border: 1px solid #ccc;
+            padding: 1rem;
+            border-radius: 5px;
+            width: 100%;
+            outline: none;
+        }
+    </style>
+    <script>
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById('password');
+            const eyeIcon = document.getElementById('eye-icon');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100">
+    <div class="container1">
+        <div class="bl border border-gray-300 rounded-3xl shadow-lg">
+            <h1 class="text-center text-white text-2xl font-bold mb-6">LOGIN</h1>
+            <form action="/login" method="post">
+                <!-- Email field -->
+                <div class="input-container">
+                    <label for="email" class="block text-gray-900 font-bold mb-2 text-white">Email</label>
+                    <input type="email" id="email" name="email" class="w-full text-white px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 bg-transparent" placeholder="Enter your email" required>
+                </div>
+                
+                <!-- Password field with Eye icon -->
+                <div class="input-container">
+                    <label for="password" class="block text-gray-900 font-bold mb-2 text-white">Password</label>
+                    <div class="relative">
+                        <input type="password" id="password" name="password" 
+                               class="w-full text-white px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 bg-transparent" 
+                               placeholder="Enter your password" required>
+                        <span onclick="togglePasswordVisibility()" class="absolute right-3 top-3 cursor-pointer">
+                            <i id="eye-icon" class="fas fa-eye text-gray-500"></i>
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Submit button -->
+                <div class="mb-3">
+                    <button type="submit" class="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600">LOGIN</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
